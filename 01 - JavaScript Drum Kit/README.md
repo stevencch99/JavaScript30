@@ -34,6 +34,11 @@
 - Its is possible to iterate over it with `forEach()`.
 - Dome older browsers have not implemented `NoodeList.forEach()` nor `Array.from()`, This can be circumented by using `Array.prototype.forEach()`. [See this Example fomr MDN](https://developer.mozilla.org/en-US/docs/Web/API/NodeList#Example).
 
+```js
+const list = document.querySelectorAll('.key');
+Array.prototype.forEach.call(list, addEventListener('transitionend', removeTransition));
+```
+
 ## References
 - [MDN](https://developer.mozilla.org/en-US/docs/Web/API/NodeList)
 - [w3schools.com](https://www.w3schools.com/tags/ref_av_dom.asp)
