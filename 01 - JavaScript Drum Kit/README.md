@@ -35,8 +35,8 @@
 - Dome older browsers have not implemented `NoodeList.forEach()` nor `Array.from()`, This can be circumented by using `Array.prototype.forEach()`. [See this Example fomr MDN](https://developer.mozilla.org/en-US/docs/Web/API/NodeList#Example).
 
 ```js
-const list = document.querySelectorAll('.key');
-Array.prototype.forEach.call(list, addEventListener('transitionend', removeTransition));
+const keys = document.querySelectorAll('.key');
+Array.prototype.forEach.call(keys, key => key.addEventListener('transitionend', removeTransition));
 ```
 
 ## References
