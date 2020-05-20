@@ -42,3 +42,4 @@ Array.prototype.forEach.call(keys, key => key.addEventListener('transitionend', 
 ## References
 - [MDN](https://developer.mozilla.org/en-US/docs/Web/API/NodeList)
 - [w3schools.com](https://www.w3schools.com/tags/ref_av_dom.asp)
+- [keycode.info](http://keycode.info/) - shows keyCode
