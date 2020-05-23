@@ -27,7 +27,7 @@ let panels = document.querySelectorAll('.panel');
 
 let arr1 = [...panels];
 let arr2 = Array.from(panels);
-let arr3 = [].slice.call(panels); // equal to Array.prototype.slice;
+let arr3 = [].slice.call(panels); // [].slice === Array.prototype.slice;
 ```
 
 
