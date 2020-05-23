@@ -152,12 +152,25 @@
   <script>
     const panels = document.querySelectorAll('.panel');
 
+    function siblings(element) {
+      let thisElement = this;
+      console.log(this);
+      let siblings = [...thisElement.parentNode.children].filter(el => el !== thisElement);
+      return siblings
+    }
+
     function toggleOpen() {
       this.classList.toggle('open');
+      // close other panels
+      [...this.parentNode.childNodes].forEach(el => {
+        if (el !== this) {
+          el.classList.remove('open')
+        }
+      });
     }
 
     function toggleActive(e) {
-      console.log(e.propertyName);
+      // console.log(e.propertyName);
       // the propertyName called just "flex" in Safari rather than "flex-grow" in other browsers.
       if (e.propertyName.includes('flex')) {
         this.classList.toggle('open-active');
