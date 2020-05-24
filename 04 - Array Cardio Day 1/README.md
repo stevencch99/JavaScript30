@@ -1,11 +1,11 @@
 # Target
 Learning the basic methods of Array.
 
-## 重點整理
+## Key points
 - console.table()
 Print result as table.
 
-- filter
+- `filter`
 ```js
 const fifteen = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
 const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600));
@@ -13,7 +13,7 @@ const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.
 console.table(fifteen);
 ```
 
-- sort
+- `sort`
 Sort the inventors by birthdate, oldest to youngest.
 ```js
 // -1: front, 1: behind
@@ -35,7 +35,7 @@ if (a = b) {
 } // move nothing
 ```
 
-- reduce
+- `reduce`
 Count the number of elements in an array.
 ```js
 const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
