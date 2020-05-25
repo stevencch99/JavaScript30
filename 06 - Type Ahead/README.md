@@ -1,6 +1,5 @@
 # Target
-Create an AJAX page, use `fetch()` method to get data, and 
-
+Create an AJAX page, use `fetch()` method to get data, and `Element.innerHTML()` to manipulate html instantly.
 
 ## Key points
 - `fetch`
@@ -30,6 +29,30 @@ function findMatches(wordToMatch, cities) {
 ```
 
 - Add thousands separator into the population.
-```js
-const population = place.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-```
+  - Option 1, `replace()`:
+
+    ```js
+    const population = place.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    ```
+
+    - `\B`: Matches a non-word boundary. 
+    - `x(?=y)`: **Lookahead assertion:** Matches "x" only if "x" is followed by "y".
+    - `x(?!y)`: **Negative lookahead assertion:** Matches "x" only if "x" is not followed by "y".
+    - `(?<=y)x`: **Lookbehind assertion:** Matches "x" only if "x" is preceded by "y".
+    - `(?<!y)x`: **Negative lookbehind assertion:** Matches "x" only if "x" is not preceded by "y".
+
+    This approach is kind of neat, but dosn't work well on number with decimal:
+
+    ```js
+    '12345.678'.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    // '12,345.678'
+
+    "12345678.12345678".replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    // '12,345,678.12,345,678'
+    ```
+
+  - Option 2, `toLocaleString()`:
+    ```js
+    12345678.12345678.toLocaleString()
+    // '12,345,678.123'
+    ```
