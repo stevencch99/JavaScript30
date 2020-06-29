@@ -27,7 +27,7 @@
   function draw(e) {
     // todo
     if (!isDrawing) return; // stop thefunction from running when they are not moused
-    // console.log(e);
+    console.log(e);
     ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
     ctx.beginPath();
     // start from
@@ -63,7 +63,7 @@
   canvas.addEventListener('mousemove', draw);
   canvas.addEventListener('mouseup', () => isDrawing = false);
   canvas.addEventListener('mouseout', () => isDrawing = false);
-  
+  canvas.addEventListener('touchmove', console.log('touching'));
 </script>
 
 <style>
