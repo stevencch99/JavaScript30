@@ -1,6 +1,6 @@
 # Target
 Make animation effect by CSS and JavaScript.
-Using:  
+Using:
 - CSS flex, transform, transition. 
 - JavaScript events and class toggle.
 
@@ -30,6 +30,5 @@ let arr2 = Array.from(panels);
 let arr3 = [].slice.call(panels); // [].slice === Array.prototype.slice;
 ```
 
-
 ## Reference
-- [flex.io](https://flexbox.io/)
+- [flex.io](https://flexbox.io/): A simple, free 20 video course.
