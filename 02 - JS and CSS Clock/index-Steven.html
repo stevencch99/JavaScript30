@@ -90,7 +90,7 @@
       const seconds = now.getSeconds();
       const mins = now.getMinutes();
       const hours = now.getHours();
-      const secondDegrees = ((seconds / 60) * 360);
+      const secondDegrees = seconds * 6; // commit by Ellen
       const minsDegrees = ((mins / 60) * 360);
       const hourDegrees = ((hours / 12) * 360);
 
