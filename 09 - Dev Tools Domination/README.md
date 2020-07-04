@@ -1,5 +1,6 @@
 # Target
 Play with Dev Tools.
+
 ## Key points
 ### Interpolated
 - Prefer the usage of ES6 backtick `` ` ``
@@ -73,4 +74,3 @@ fetch('https://api.github.com/users/stevencch99')
     console.log(data);
   })
 ```
-## Additional Information
