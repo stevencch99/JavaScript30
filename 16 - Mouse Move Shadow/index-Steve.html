@@ -7,7 +7,7 @@
 <body>
 
   <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
+    <h1 contenteditable='true'>🔥YOLO🔥</h1>
   </div>
 
   <style>
@@ -37,22 +37,24 @@
 <script>
   const hero = document.querySelector('.hero');
   const text = hero.querySelector('h1');
-  const walk = 100; //100px
+  // 100px, for the moving range of text-shadow in original solution by Wesbos
+  // const walk = 100; 
   function shadow(e) {
-    const { offsetWidth: width, offsetHeight: height } = hero;
-    let { offsetX: x, offsetY: y } = e;
-    
+  const { offsetWidth: width, offsetHeight: height } = hero;
+  let { offsetX: x, offsetY: y } = e;
+
     if (this !== e.target) {
       x = x + e.target.offsetLeft;
       y = y + e.target.offsetTop;
     }
 
     // walk through 50 ~ -50
-    // Origi solution;
-
+    // Solution - original
     // const xWalk = Math.round((x / width * walk) - (walk / 2));
     // const yWalk = Math.round((y / height * walk) - (walk / 2));
 
+    // Solution - Etrex
+    // reduce the moving range of text-shadow and reset the center point of it
     const xWalk = (x - width / 2) / 6;
     const yWalk = (y - height / 2) / 6;
 
@@ -61,6 +63,7 @@
       ${xWalk}px ${yWalk * -1}px 0 rgba(0,255,255,0.7),
       ${xWalk}px ${yWalk}px 0 rgba(0,0,255,0.7)
     `;
+    // printing parameters for future usage.
     // console.log('Steve -> xWalk:', xWalk, yWalk);
     // console.log('Steve:', x, y, width, walk);
   }
