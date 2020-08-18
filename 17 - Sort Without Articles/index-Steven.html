@@ -48,18 +48,11 @@
 
   <script>
     /*
-    1. bands 排除特定字元之後再拿來排序
-      - for 'An Old Dog', sorting by 'Old Dog' instead of 'An Old Dog'
-      - 創造篩選後的新陣列（？）
-        - The array => pop 'The'
-        - An array => pop 'An'
-        - A array => pop 'A'
-      - add the filtered array back to the origin array
-      - Sort
-      - ........
-    2. 排序之後，加入到 ul#bands
-      - sort 方法可以傳 callback function 可以在排序的同時處理 step 1.
-    3. 加入到清單中的元素依然保留原本的字元
+    1. Exclude the article from bands' name
+      - e.g. for 'An Old Dog', sorting by 'Old Dog' instead of 'An Old Dog'
+    2. Insert html list element into the ul #bands
+      - Array.prototype.sort() receives a callback function, which is able to deal with sept 1 while sorting.
+    3. The list element inserted remains the orignial form (exactly same as before sorting)
     */
 
     const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled',
@@ -92,33 +85,36 @@
 
     // Solution 2. self-memorizing function
     let count = 0;
+    const excludeList = ['The', 'An', 'A'];
 
     function striptName(a) {
       if (!striptName.cache) {
-        striptName.cache = {}
+        striptName.cache = {};
       };
+
       if (striptName.cache[a] !== undefined) {
-        return striptName.cache[a]
+        return striptName.cache[a];
       };
+
       count++;
 
-      let articleList = ['The', 'An', 'A'];
+      const nameArr = a.split(' ');
 
-      if (articleList.includes(a.split(' ')[0])) {
-        b = a.split(' ');
-        b.shift();
-        return striptName.cache[a] = b.join(' ');
+      if (excludeList.includes(nameArr[0])) {
+        nameArr.shift();
+        return striptName.cache[a] = nameArr.join(' ');
       } else {
         return striptName.cache[a] = a;
       }
     }
 
-    const sortedBands2 = bands.sort((a, b) => striptName(a) > striptName(b) ? 1 : -1);
+    const sortedBands2 = bands.sort((a, b) => stript(a) > stript(b) ? 1 : -1);
     // ***********************************************************************
 
-    // Solution 3. answer by Etrex
+    // Solution 3. by Etrex
     // Etrex.get('奇怪的知識');
-    // 將 bands 的內容物用 { } 包成一個物件，內含：
+    // turn elements in the bands array into objects,
+    // which included original name and forSort name (article stripped)
     const sortedBands3 = bands.map(b => {
         return {
           original: b,
