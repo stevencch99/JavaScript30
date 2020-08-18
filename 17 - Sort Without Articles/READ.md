@@ -1,39 +1,50 @@
 ## Target
+
 To sort an array of band's names while ignore the article: 'The', 'An' and 'A' which infront of the band's name.
 
 Break down into steps:
+
 1. Exclude the article from bands' name
-  - e.g. for 'An Old Dog', sorting by 'Old Dog' instead of 'An Old Dog'
+
+- e.g. for 'An Old Dog', sorting by 'Old Dog' instead of 'An Old Dog'
+
 2. Insert html list element into the ul #bands
-  - Array.prototype.sort() receives a callback function, which is able to deal with sept 1 while sorting.
+
+- Array.prototype.sort() receives a callback function, which is able to deal with sept 1 while sorting.
+
 3. The list elements inserted should remain the same as before.
 
 ## Key points
 
 ### Sorting with short hands
+
 Combine the short hand of **arrow function** and **directly return value** to write a more concise and elegant code.
-  - Refactoring of Array sorting, Step 1.
-    ```js
-    const sortedBands = bands.sort(function(a, b) {
-      if (stript(a) > stript(b)) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
-    ```
 
-  - Refactoring of Array sorting, Step 2.
-    ```js
-    const sortedBands = bands.sort((a, b) => {
-      return stript(a) > stript(b) ? 1 : -1;
-    });
-    ```
+- Refactoring of Array sorting, Step 1.
 
-  - Refactoring of Array sorting, Step 3.
   ```js
-  const sortedBands = bands.sort((a, b) => stript(a) > stript(b) ? 1 : -1);
+  const sortedBands = bands.sort(function (a, b) {
+    if (stript(a) > stript(b)) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
   ```
+
+- Refactoring of Array sorting, Step 2.
+
+  ```js
+  const sortedBands = bands.sort((a, b) => {
+    return stript(a) > stript(b) ? 1 : -1;
+  });
+  ```
+
+- Refactoring of Array sorting, Step 3.
+
+```js
+const sortedBands = bands.sort((a, b) => (stript(a) > stript(b) ? 1 : -1));
+```
 
 ### Self-memorizing function
 
@@ -54,22 +65,39 @@ function striptName(a) {
   // to build cache of the function
   if (!striptName.cache) {
     striptName.cache = {};
-  };
+  }
 
   // check if the result has been cached
   if (striptName.cache[a] !== undefined) {
     return striptName.cache[a];
-  };
+  }
 
   const nameArr = a.split(' ');
 
   if (excludeList.includes(nameArr[0])) {
     nameArr.shift();
-    return striptName.cache[a] = nameArr.join(' ');
+    return (striptName.cache[a] = nameArr.join(' '));
   } else {
-    return striptName.cache[a] = a;
+    return (striptName.cache[a] = a);
   }
 }
 
-const sortedBands2 = bands.sort((a, b) => stript(a) > stript(b) ? 1 : -1);
+const sortedBands = bands.sort((a, b) => (striptName(a) > striptName(b) ? 1 : -1));
 ```
+
+Call `console.table(sortedBands);` to see formated result:
+
+| index | Value                     |
+| ----- | ------------------------- |
+| 0     | "Anywhere But Here"       |
+| 1     | "The Bled"2"Counterparts" |
+| 3     | "The Devil Wears Prada"   |
+| 4     | "The Midway State"        |
+| 5     | "Norma Jean"              |
+| 6     | "Oh, Sleeper"             |
+| 7     | "An Old Dog"              |
+| 8     | "Pierce the Veil"         |
+| 9     | "The Plot in You"         |
+| 10    | "Say Anything"            |
+| 11    | "A Skylit Drive"          |
+| 12    | "We Came as Romans"       |
