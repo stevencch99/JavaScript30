@@ -68,13 +68,13 @@
     ];
 
     // Solution 1. Answer by wesbos
-    function stript(bandName) {
+    function strip(bandName) {
       return bandName.replace(/^(a |the |an )/i, '').trim();
     }
 
     // Refactoring of Array sorting, Step 1.
     // const sortedBands = bands.sort(function(a, b) {
-    //   if (stript(a) > stript(b)) {
+    //   if (strip(a) > strip(b)) {
     //     return 1;
     //   } else {
     //     return -1;
@@ -83,15 +83,17 @@
 
     // Refactoring of Array sorting, Step 2.
     // const sortedBands = bands.sort((a, b) => {
-    //   return stript(a) > stript(b) ? 1 : -1;
+    //   return strip(a) > strip(b) ? 1 : -1;
     // });
 
     // Refactoring of Array sorting, Step 3.
-    const sortedBands = bands.sort((a, b) => stript(a) > stript(b) ? 1 : -1);
+    const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1);
     // ***********************************************************************
 
     // Solution 2. self-memorizing function
-    let count = 0;
+    // this approach prevents redundant calculation
+
+    let count = 0; // see how many times the function been called
 
     function striptName(a) {
       if (!striptName.cache) {
